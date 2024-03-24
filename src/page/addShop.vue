@@ -9,7 +9,7 @@
           label-width="110px"
           class="demo-formData"
         >
-          <el-form-item label="店铺名称" prop="name" id="name">
+          <el-form-item label="货架名称" prop="name" id="name">
             <el-input v-model="formData.name"></el-input>
           </el-form-item>
           <el-form-item label="详细地址" prop="address" id="address">
@@ -25,19 +25,19 @@
           <el-form-item label="联系电话" prop="phone" id="phone">
             <el-input v-model.number="formData.phone" maxlength="11"></el-input>
           </el-form-item>
-          <el-form-item label="店铺简介" prop="description">
+          <el-form-item label="货架简介" prop="description">
             <el-input
               v-model="formData.description"
-              placeholder="请介绍你的店铺,让顾客更加了解我们"
+              placeholder="请介绍你的货架,让顾客更加了解我们"
             ></el-input>
           </el-form-item>
-          <el-form-item label="店铺标语" prop="promotion_info">
+          <el-form-item label="货架标语" prop="promotion_info">
             <el-input
               v-model="formData.promotion_info"
-              placeholder="店铺高峰期或者店铺的宣传标语"
+              placeholder="货架高峰期或者货架的宣传标语"
             ></el-input>
           </el-form-item>
-          <el-form-item label="店铺分类">
+          <el-form-item label="货架分类">
             <el-cascader
               placeholder="可搜索你的分类"
               :options="categoryOptions"
@@ -46,7 +46,7 @@
               filterable
             ></el-cascader>
           </el-form-item>
-          <el-form-item label="店铺特点" style="white-space: nowrap">
+          <el-form-item label="货架特点" style="white-space: nowrap">
             <span>品牌保障</span>
             <el-switch
               v-model="formData.is_premium"
@@ -63,7 +63,7 @@
                 --el-switch-off-color: #ff4949;
               "
             ></el-switch>
-            <span>新开店铺</span>
+            <span>新开货架</span>
             <el-switch
               v-model="formData.new"
               style="
@@ -115,21 +115,21 @@
           <el-form-item label="营业时间" style="white-space: nowrap">
             <el-time-select
               v-model="formData.startTime"
-              placeholder="开店时间"
+              placeholder="货架开发时间"
               start="05:30"
               step="00:15"
               end="23:00"
             ></el-time-select>
             <el-time-select
               v-model="formData.endTime"
-              placeholder="关店时间"
+              placeholder="货架关闭时间"
               start="05:30"
               step="00:15"
               end="23:30"
               :min-time="formData.startTime"
             ></el-time-select>
           </el-form-item>
-          <el-form-item label="上传店铺头像">
+          <el-form-item label="上传货架头像">
             <el-upload
               :action="baseUrl + '/v1/addimg/shop'"
               class="avatar-uploader"
@@ -290,12 +290,12 @@ export default {
         piao: true,
         startTime: "",
         endTime: "",
-        image_path: "", //店铺头像
+        image_path: "", //货架头像
         business_license_image: "", //营业资格证照
         catering_service_license_image: "", //食品安全
       },
       rules: {
-        name: [{ required: true, message: "请输入店铺名称", trigger: "blur" }],
+        name: [{ required: true, message: "请输入货架名称", trigger: "blur" }],
         address: [
           { required: true, message: "请输入详细地址", trigger: "blur" },
         ],
@@ -383,14 +383,14 @@ export default {
       if (res.status === 1) {
         this.formData.image_path = res.image_path;
       } else {
-        ElMessage.error("上传店铺头像失败");
+        ElMessage.error("上传货架头像失败");
       }
     },
     handleBusinessAvatarSucess(res, file) {
       if (res.status === 1) {
         this.formData.business_license_image = res.image_path;
       } else {
-        ElMessage.error("上传店铺营业资格证失败");
+        ElMessage.error("上传货架营业资格证失败");
       }
     },
     handleServiceAvatarSucess(res, file) {
@@ -553,7 +553,7 @@ export default {
               piao: true,
               startTime: "",
               endTime: "",
-              image_path: "", //店铺头像
+              image_path: "", //货架头像
               business_license_image: "", //营业资格证照
               catering_service_license_image: "", //食品安全
             };

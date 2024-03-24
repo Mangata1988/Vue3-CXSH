@@ -21,7 +21,7 @@ const router = createRouter({
         }, {
           path: '/addShop',
           component: () => import('@/page/addShop.vue'),
-          meta: ['添加数据', '添加商铺']
+          meta: ['添加数据', '添加货架']
         }, {
           path: '/addGoods',
           component: () => import("@/page/addGoods.vue"),
@@ -33,7 +33,7 @@ const router = createRouter({
         }, {
           path: '/shopList',
           component: () => import('@/page/shopList.vue'),
-          meta: ['数据管理', '商家列表']
+          meta: ['数据管理', '货架列表']
         }, {
           path: '/foodList',
           component: () => import('@/page/foodList.vue'),

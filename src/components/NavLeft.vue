@@ -48,7 +48,7 @@
           <el-icon><Shop></Shop></el-icon>
           <span>商家管理</span>
         </template>
-        <el-menu-item index="shopList">商家列表</el-menu-item>
+        <el-menu-item index="shopList">货架列表</el-menu-item>
         <el-menu-item index="foodList">食品列表</el-menu-item>
         <el-menu-item index="orderList">订单列表</el-menu-item>
       </el-sub-menu>
@@ -58,7 +58,7 @@
           <el-icon><FolderAdd></FolderAdd></el-icon>
           <span>数据管理</span>
         </template>
-        <el-menu-item index="addShop">添加商铺</el-menu-item>
+        <el-menu-item index="addShop">添加货架</el-menu-item>
         <el-menu-item index="addGoods">添加商品</el-menu-item>
       </el-sub-menu>
 
