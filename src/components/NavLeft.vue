@@ -70,13 +70,13 @@
         <el-menu-item index="visitor">用户分布</el-menu-item>
       </el-sub-menu>
 
-      <el-sub-menu index="6">
+      <!-- <el-sub-menu index="6">
         <template #title>
           <el-icon><Edit></Edit></el-icon>
           <span>富文本编辑</span>
         </template>
         <el-menu-item index="vueEdit">文本编辑</el-menu-item>
-      </el-sub-menu>
+      </el-sub-menu> -->
 
       <el-sub-menu index="7">
         <template #title>
@@ -91,6 +91,7 @@
           <el-icon><InfoFilled></InfoFilled></el-icon>
           <span>说明</span>
         </template>
+        <el-menu-item index="explain">系统说明</el-menu-item>
       </el-sub-menu>
     </el-menu>
   </el-scrollbar>

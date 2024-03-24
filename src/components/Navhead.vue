@@ -40,7 +40,7 @@
 <script>
 import env from "@/config/env.js";
 import { singout, getAdminInfo } from "@/api/getData.js";
-import { mapActions, mapState } from "vuex";
+import { mapActions } from "vuex";
 import { Expand, Fold, RefreshRight } from "@element-plus/icons-vue";
 
 export default {
@@ -60,6 +60,7 @@ export default {
     RefreshRight,
   },
   methods: {
+    ...mapActions(["getAdminData"]),
     async handleCommand(command) {
       if (command == "home") {
         this.$router.push("/manage");
@@ -98,7 +99,7 @@ export default {
     },
     async getAdminDatas() {
       const res = await getAdminInfo();
-      if (res.status===0) {
+      if (res.status === 0) {
         this.$message({
           type: "error",
           message: "获取用户信息失败，请重新登录！",
@@ -122,6 +123,7 @@ export default {
     } else {
       localStorage.removeItem("adminData");
       this.getAdminDatas();
+      this.getAdminData();
     }
   },
 };
