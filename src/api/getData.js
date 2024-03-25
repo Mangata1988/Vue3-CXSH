@@ -42,6 +42,14 @@ export const adminCount = () => fetch('/admin/count');
 export const conditionGetAdmin = data => fetch('/admin/conditionget/admin', data);
 
 /**
+ * 管理员个人信息更新
+ * @param {*} data 
+ * @returns 
+ */
+
+export const updataAdmin = data => fetch('/admin/updata/info', data, 'post');
+
+/**
  * api请求量
  */
 export const apiCount = data => fetch('/statis/api/' + data + '/count');

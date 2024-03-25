@@ -13,8 +13,8 @@ if (process.env.NODE_ENV == 'development') {
     baseUrl = '/api';
     baseImgPath = '/api/img/';
 } else {
-    // baseUrl = '';
-    // baseImgPath = '/img/';
+    baseUrl = '/api';
+    baseImgPath = '/api/img/';
 }
 
 export default {
