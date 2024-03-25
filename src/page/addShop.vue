@@ -148,7 +148,7 @@
               <img w-full :src="dialogImageUrl" />
             </el-dialog>
           </el-form-item>
-          <el-form-item label="上传营业执照">
+          <el-form-item label="上传食品更新日期照">
             <el-upload
               :action="baseUrl + '/v1/addimg/shop'"
               class="avatar-uploader"
@@ -165,7 +165,7 @@
               <img w-full :src="dialogImageUrl" />
             </el-dialog>
           </el-form-item>
-          <el-form-item label="上传餐饮服务许可证">
+          <el-form-item label="上传食品安全执照">
             <el-upload
               :action="baseUrl + '/v1/addimg/shop'"
               class="avatar-uploader"
