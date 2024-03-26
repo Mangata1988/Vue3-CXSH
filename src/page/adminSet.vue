@@ -14,7 +14,7 @@
               >
                 <el-form-item label="姓名" label-width="330px">
                   <el-input
-                    v-model="baseSetData.username"
+                    v-model="baseSetData.user_name"
                     :placeholder="adminInfo.user_name"
                     disabled
                   ></el-input>
@@ -116,7 +116,7 @@ import options from "@/config/options.js";
 import { mapState, mapActions } from "vuex";
 import { Iphone, Plus } from "@element-plus/icons-vue";
 import env from "@/config/env.js";
-import {} from "@/api/getData.js";
+import { updataAdmin } from "@/api/getData.js";
 
 export default {
   components: {
@@ -127,7 +127,7 @@ export default {
     return {
       tabPosition: "left",
       baseSetData: {
-        username: "",
+        user_name: "",
         createtime: "",
         admin: "",
         id: "",
@@ -184,8 +184,15 @@ export default {
       return true;
     },
     submitForm(form) {
-      this.$refs[form].validate((valid) => {
+      this.$refs[form].validate(async (valid) => {
         if (valid) {
+          const res = await updataAdmin(this.baseSetData);
+          if (res.status === 1) {
+            this.$message.success("更新成功");
+            this.getAdminData();
+          } else {
+            this.$message.error("更新失败");
+          }
         }
       });
     },
