@@ -57,7 +57,9 @@
                 <el-form-item label="联系电话" prop="phone">
                   <el-input
                     v-model="baseSetData.phone"
-                    placeholder="请输入电话号码"
+                    :placeholder="
+                      adminInfo.phone ? adminInfo.phone : '请输入联系电话'
+                    "
                     clearable
                   >
                     <template #prepend>
@@ -141,13 +143,13 @@ export default {
         phone: [
           {
             required: true,
-            min: 12,
-            max: 12,
+            min: 11,
+            max: 11,
             message: "请输入手机号",
             trigger: "blur",
           },
           {
-            pattern: /^1[3456789]\d{9}$/,
+            pattern: /^(?:(?:\+|00)86)?1\d{10}$/,
             message: "目前只支持中国大陆的手机号码",
             trigger: "blur",
           },
@@ -159,6 +161,9 @@ export default {
   },
   computed: {
     ...mapState(["adminInfo"]),
+  },
+  created() {
+    this.getAdminData();
   },
   methods: {
     ...mapActions(["getAdminData"]),
@@ -184,7 +189,17 @@ export default {
       return true;
     },
     submitForm(form) {
+      if (this.baseSetData.phone === "") {
+        this.baseSetData.phone = this.adminInfo.phone;
+      }
       this.$refs[form].validate(async (valid) => {
+        Object.entries(this.baseSetData).forEach(([key, value]) => {
+          if (value === "") {
+            this.baseSetData[key] = this.adminInfo[key]
+              ? this.adminInfo[key]
+              : "";
+          }
+        });
         if (valid) {
           const res = await updataAdmin(this.baseSetData);
           if (res.status === 1) {
