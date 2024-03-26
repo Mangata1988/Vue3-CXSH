@@ -13,8 +13,8 @@ if (process.env.NODE_ENV == 'development') {
     baseUrl = '/api';
     baseImgPath = '/api/img/';
 } else {
-    baseUrl = '/api';
-    baseImgPath = '/api/img/';
+    baseUrl = '/node-express-and-cxs.vercel.app';
+    baseImgPath = '/node-express-and-cxs.vercel.app/img/';
 }
 
 export default {
