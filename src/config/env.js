@@ -10,11 +10,11 @@ let baseImgPath;
 
 // let ModeType = import.meta.env.MODE || 'production';
 if (process.env.NODE_ENV == 'development') {
+    baseUrl = 'http://127.0.0.1:8001';
+    baseImgPath = 'http://127.0.0.1:8001/img/';
+} else {
     baseUrl = '/api';
     baseImgPath = '/api/img/';
-} else {
-    baseUrl = '/node-express-and-cxs.vercel.app';
-    baseImgPath = '/node-express-and-cxs.vercel.app/img/';
 }
 
 export default {

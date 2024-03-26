@@ -20,7 +20,7 @@ export default defineConfig({
     port: 8080,
     proxy: {
       '/api': {
-        target: 'http://127.0.0.1:8001',
+        target: 'https://node-express-and-cxs.vercel.app',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, ''),
       }
