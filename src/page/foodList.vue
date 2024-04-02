@@ -22,19 +22,19 @@
               <el-form-item label="食品名称">
                 <span>{{ props.row.name }}</span>
               </el-form-item>
-              <el-form-item label="货架名称">
+              <el-form-item label="商铺名称">
                 <span>{{ props.row.restaurant_name }}</span>
               </el-form-item>
               <el-form-item label="食品 ID">
                 <span>{{ props.row.item_id }}</span>
               </el-form-item>
-              <el-form-item label="货架 ID">
+              <el-form-item label="商铺 ID">
                 <span>{{ props.row.restaurant_id }}</span>
               </el-form-item>
               <el-form-item label="食品介绍">
                 <span>{{ props.row.description }}</span>
               </el-form-item>
-              <el-form-item label="货架地址">
+              <el-form-item label="商铺地址">
                 <span>{{ props.row.restaurant_address }}</span>
               </el-form-item>
               <el-form-item label="食品评分">

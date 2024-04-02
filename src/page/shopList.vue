@@ -3,8 +3,8 @@
     <!-- 搜索模块 -->
     <el-card>
       <el-form :model="ruleForm" :inline="true" ref="ruleFormRef">
-        <el-form-item label="货架名称" prop="name">
-          <el-autocomplete v-model="ruleForm.name" placeholder="货架名称" @select="nameSelect"
+        <el-form-item label="商铺名称" prop="name">
+          <el-autocomplete v-model="ruleForm.name" placeholder="商铺名称" @select="nameSelect"
             :fetch-suggestions="querySelectName"></el-autocomplete>
           <!-- <el-input v-model="ruleForm.name" placeholder="店铺名称"></el-input> -->
         </el-form-item>
@@ -21,16 +21,16 @@
         <el-table-column type="expand">
           <template #default="props">
             <el-form label-position="left" inline class="demo-table-expand">
-              <el-form-item label="货架名称:">
+              <el-form-item label="商铺名称:">
                 <span>{{ props.row.name }}</span>
               </el-form-item>
-              <el-form-item label="货架位置:">
+              <el-form-item label="商铺位置:">
                 <span>{{ props.row.address }}</span>
               </el-form-item>
-              <el-form-item label="货架介绍:">
+              <el-form-item label="商铺介绍:">
                 <span>{{ props.row.description }}</span>
               </el-form-item>
-              <el-form-item label="货架 ID:">
+              <el-form-item label="商铺 ID:">
                 <span>{{ props.row.id }}</span>
               </el-form-item>
               <el-form-item label="联系电话:">
@@ -48,14 +48,14 @@
             </el-form>
           </template>
         </el-table-column>
-        <el-table-column label="货架名称" prop="name"></el-table-column>
-        <el-table-column label="货架介绍" prop="description"></el-table-column>
+        <el-table-column label="商铺名称" prop="name"></el-table-column>
+        <el-table-column label="商铺介绍" prop="description"></el-table-column>
         <el-table-column label="操作" width="400">
           <template #default="scope">
-            <el-button size="small" @click="handleEadit(scope.$index, scope.row)">编辑货架</el-button>
+            <el-button size="small" @click="handleEadit(scope.$index, scope.row)">编辑商铺</el-button>
             <el-button type="success" size="small" @click="addFood(scope.$index, scope.row)">编辑食品</el-button>
             <el-button type="success" size="small" @click="showListOrder(scope.$index, scope.row)">查看订单</el-button>
-            <el-button type="danger" size="small" @click="handleDelete(scope.$index, scope.row)">删除货架</el-button>
+            <el-button type="danger" size="small" @click="handleDelete(scope.$index, scope.row)">删除商铺</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -67,9 +67,9 @@
       </div>
 
       <!-- 弹出编辑模块 -->
-      <el-dialog title="修改货架信息" v-model="dialogFormVisible">
+      <el-dialog title="修改商铺信息" v-model="dialogFormVisible">
         <el-form :model="selectTable">
-          <el-form-item label="货架名称" label-width="100px">
+          <el-form-item label="商铺名称" label-width="100px">
             <el-input v-model="selectTable.name"></el-input>
           </el-form-item>
           <el-form-item label="详细地址" label-width="100px">
@@ -77,16 +77,16 @@
               :fetch-suggestions="querySearchAsync"></el-autocomplete>
             <span>当前城市:{{ city.name }}</span>
           </el-form-item>
-          <el-form-item label="货架介绍" label-width="100px">
-            <el-input v-model="selectTable.description" placeholder="你的货架简介"></el-input>
+          <el-form-item label="商铺介绍" label-width="100px">
+            <el-input v-model="selectTable.description" placeholder="你的商铺简介"></el-input>
           </el-form-item>
           <el-form-item label="联系电话" label-width="100px">
             <el-input v-model="selectTable.phone" placeholder="联系电话"></el-input>
           </el-form-item>
-          <el-form-item label="货架分类" label-width="100px">
+          <el-form-item label="商铺分类" label-width="100px">
             <el-cascader :options="categoryOptions" v-model="selectCategory"></el-cascader>
           </el-form-item>
-          <el-form-item label="货架图片" label-width="100px">
+          <el-form-item label="商铺图片" label-width="100px">
             <el-upload :action="baseUrl + '/v1/addimg/shop'" class="avatar-uploader" :show-file-list="true"
               :on-success="handleShopAvatarScucess" :before-upload="beforeAvatarUpload" :limit="1"
               :on-exceed="handleExceed" :on-remove="handleRemove" list-type="picture-card" :on-preview="handlePreview">

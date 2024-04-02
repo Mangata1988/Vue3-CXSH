@@ -75,7 +75,7 @@ export default {
         } else {
             this.restaurant_id = Math.ceil(Math.random() * 145);
             ElMessageBox.confirm(
-                "查看订单需要选择一个货架,先去选择货架吗？",
+                "查看订单需要选择一个商铺,先去选择商铺吗？",
                 "提醒",
                 {
                     confirmButtonText: "确定",
