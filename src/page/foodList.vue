@@ -458,5 +458,7 @@ export default {
 .avatar-img {
   margin-left: 20px;
   display: inline-block;
+  width: 150px;
+  height: 150px;
 }
 </style>
