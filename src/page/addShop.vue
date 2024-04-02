@@ -381,7 +381,8 @@ export default {
     },
     handleShopAvatarScucess(res, file) {
       if (res.status === 1) {
-        this.formData.image_path = res.image_path;
+        const path = res.image_path.split("/");
+        this.formData.image_path = path[path.length - 1];
       } else {
         ElMessage.error("上传商铺头像失败");
       }
@@ -587,9 +588,9 @@ export default {
   text-align: center;
 }
 .avatar-uploader .el-upload:hover {
-    border-color: #20a0ff;
+  border-color: #20a0ff;
 }
-.avatar-uploader-icon{
+.avatar-uploader-icon {
   font-size: 28px;
   color: #8c939d;
 }

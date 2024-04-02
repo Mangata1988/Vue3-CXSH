@@ -3,25 +3,48 @@
     <el-row>
       <el-col :span="16" :offset="4">
         <header class="form_header">选择食品种类</header>
-        <el-form :model="categoryForm" ref="categoryForm" label-width="110px" class="form">
+        <el-form
+          :model="categoryForm"
+          ref="categoryForm"
+          label-width="110px"
+          class="form"
+        >
           <el-row class="category_select">
             <el-form-item label="食品种类">
-              <el-select v-model="categoryForm.categorySelect" :placeholder="selectValue.label" style="width: 100%">
-                <el-option v-for="item in categoryForm.categoryList" :key="item.value" :label="item.label"
-                  :value="item.value"></el-option>
+              <el-select
+                v-model="categoryForm.categorySelect"
+                :placeholder="selectValue.label"
+                style="width: 100%"
+              >
+                <el-option
+                  v-for="item in categoryForm.categoryList"
+                  :key="item.value"
+                  :label="item.label"
+                  :value="item.value"
+                ></el-option>
               </el-select>
             </el-form-item>
           </el-row>
-          <el-row class="add_category_row" :class="showAddCategory ? 'showEdit' : ''">
+          <el-row
+            class="add_category_row"
+            :class="showAddCategory ? 'showEdit' : ''"
+          >
             <div class="add_category">
               <el-form-item label="食品种类" prop="name">
-                <el-input v-model="categoryForm.name" placeholder="食品种类名称"></el-input>
+                <el-input
+                  v-model="categoryForm.name"
+                  placeholder="食品种类名称"
+                ></el-input>
               </el-form-item>
               <el-form-item label="种类描述">
                 <el-input v-model="categoryForm.description"></el-input>
               </el-form-item>
               <el-form-item>
-                <el-button type="primary" @click="submitcategoryForm('categoryForm')">提交</el-button>
+                <el-button
+                  type="primary"
+                  @click="submitcategoryForm('categoryForm')"
+                  >提交</el-button
+                >
               </el-form-item>
             </div>
           </el-row>
@@ -38,7 +61,13 @@
 
         <!-- 添加食品 -->
         <header class="form_header">添加食品</header>
-        <el-form :model="foodForm" ref="foodForm" :rules="foodrules" label-width="110px" class="form food_form">
+        <el-form
+          :model="foodForm"
+          ref="foodForm"
+          :rules="foodrules"
+          label-width="110px"
+          class="form food_form"
+        >
           <el-form-item label="食品名称" prop="name">
             <el-input v-model="foodForm.name"></el-input>
           </el-form-item>
@@ -50,9 +79,18 @@
           </el-form-item>
 
           <el-form-item label="上传商品图片">
-            <el-upload :action="baseUrl + '/v1/addimg/food'" class="avatar-uploader" :show-file-list="true"
-              :on-success="handleShopAvatarScucess" :before-upload="beforeAvatarUpload" :limit="1"
-              :on-exceed="handleExceed" :on-remove="handleRemove" list-type="picture-card" :on-preview="handlePreview">
+            <el-upload
+              :action="baseUrl + '/v1/addimg/food'"
+              class="avatar-uploader"
+              :show-file-list="true"
+              :on-success="handleShopAvatarScucess"
+              :before-upload="beforeAvatarUpload"
+              :limit="1"
+              :on-exceed="handleExceed"
+              :on-remove="handleRemove"
+              list-type="picture-card"
+              :on-preview="handlePreview"
+            >
               <el-icon class="avatar-uploader-icon">
                 <Plus></Plus>
               </el-icon>
@@ -63,38 +101,78 @@
           </el-form-item>
 
           <el-form-item label="食品特点">
-            <el-select v-model="foodForm.attributes" multiple placeholder="请选择">
-              <el-option v-for="item in attributes" :key="item.value" :label="item.label" :value="item.value"></el-option>
+            <el-select
+              v-model="foodForm.attributes"
+              multiple
+              placeholder="请选择"
+            >
+              <el-option
+                v-for="item in attributes"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value"
+              ></el-option>
             </el-select>
           </el-form-item>
           <el-form-item label="食品规格">
-            <el-radio label="one" v-model="foodSpecs" class="radio">单规格</el-radio>
-            <el-radio label="more" v-model="foodSpecs" class="radio">多规格</el-radio>
+            <el-radio label="one" v-model="foodSpecs" class="radio"
+              >单规格</el-radio
+            >
+            <el-radio label="more" v-model="foodSpecs" class="radio"
+              >多规格</el-radio
+            >
           </el-form-item>
           <el-row v-if="foodSpecs === 'one'">
             <el-form-item label="包装费">
-              <el-input-number v-model="foodForm.specs[0].packing_fee" :min="0" :max="100"></el-input-number>
+              <el-input-number
+                v-model="foodForm.specs[0].packing_fee"
+                :min="0"
+                :max="100"
+              ></el-input-number>
             </el-form-item>
             <el-form-item label="价格">
-              <el-input-number v-model="foodForm.specs[0].price" :min="0" :max="100"></el-input-number>
+              <el-input-number
+                v-model="foodForm.specs[0].price"
+                :min="0"
+                :max="100"
+              ></el-input-number>
             </el-form-item>
           </el-row>
           <el-row v-else style="overflow: auto; text-align: center">
-            <el-button type="primary" @click="dialogFormVisible = true" style="margin-bottom: 10px">添加规格</el-button>
-            <el-table :data="foodForm.specs" style="margin-bottom: 20px" :row-class-name="tableRowClassName">
+            <el-button
+              type="primary"
+              @click="dialogFormVisible = true"
+              style="margin-bottom: 10px"
+              >添加规格</el-button
+            >
+            <el-table
+              :data="foodForm.specs"
+              style="margin-bottom: 20px"
+              :row-class-name="tableRowClassName"
+            >
               <el-table-column label="规格" prop="specs"></el-table-column>
-              <el-table-column label="包装费" prop="packing_fee"></el-table-column>
+              <el-table-column
+                label="包装费"
+                prop="packing_fee"
+              ></el-table-column>
               <el-table-column label="价格" prop="price"></el-table-column>
               <el-table-column label="操作">
                 <template #default="scope">
-                  <el-button type="danger" size="small" @click="handleDelte(scope.$index)">删除</el-button>
+                  <el-button
+                    type="danger"
+                    size="small"
+                    @click="handleDelte(scope.$index)"
+                    >删除</el-button
+                  >
                 </template>
               </el-table-column>
             </el-table>
           </el-row>
 
           <div class="form-submit">
-            <el-button type="primary" @click="addFood('foodForm')" round>提交</el-button>
+            <el-button type="primary" @click="addFood('foodForm')" round
+              >提交</el-button
+            >
           </div>
         </el-form>
 
@@ -105,16 +183,28 @@
               <el-input v-model="specsForm.specs"></el-input>
             </el-form-item>
             <el-form-item label="包装费" label-width="100px">
-              <el-input-number v-model="specsForm.packing_fee" :min="0" :max="100"></el-input-number>
+              <el-input-number
+                v-model="specsForm.packing_fee"
+                :min="0"
+                :max="100"
+              ></el-input-number>
             </el-form-item>
             <el-form-item label="价格" label-width="100px">
-              <el-input-number v-model="specsForm.price" :min="0" :max="100"></el-input-number>
+              <el-input-number
+                v-model="specsForm.price"
+                :min="0"
+                :max="100"
+              ></el-input-number>
             </el-form-item>
           </el-form>
           <div class="dialog-footer">
             <slot name="footer">
-              <el-button type="danger" @click="dialogFormVisible = false">取消</el-button>
-              <el-button type="primary" @click="addspecs('specsForm')">确定</el-button>
+              <el-button type="danger" @click="dialogFormVisible = false"
+                >取消</el-button
+              >
+              <el-button type="primary" @click="addspecs('specsForm')"
+                >确定</el-button
+              >
             </slot>
           </div>
         </el-dialog>
@@ -287,7 +377,8 @@ export default {
     },
     handleShopAvatarScucess(res, file) {
       if (res.status === 1) {
-        this.foodForm.image_path = res.image_path;
+        const path = res.image_path.split("/");
+        this.foodForm.image_path = path[path.length - 1];
       } else {
         ElMessage.error("上传店铺头像失败");
       }

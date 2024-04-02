@@ -344,7 +344,8 @@ export default {
     //图片编辑method
     handleShopAvatarScucess(res, file) {
       if (res.status === 1) {
-        this.selectTable.image_path = res.image_path;
+        const path = res.image_path.split("/");
+        this.selectTable.image_path = path[path.length - 1];
       } else {
         ElMessage.error(res.message);
       }
