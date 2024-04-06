@@ -4,19 +4,13 @@
     <el-card>
       <el-form :model="ruleForm" :inline="true" ref="ruleFormRef">
         <el-form-item label="商铺名称" prop="name">
-          <el-autocomplete
-            v-model="ruleForm.name"
-            placeholder="商铺名称"
-            @select="nameSelect"
-            :fetch-suggestions="querySelectName"
-          ></el-autocomplete>
+          <el-autocomplete v-model="ruleForm.name" placeholder="商铺名称" @select="nameSelect"
+            :fetch-suggestions="querySelectName"></el-autocomplete>
           <!-- <el-input v-model="ruleForm.name" placeholder="店铺名称"></el-input> -->
         </el-form-item>
         <el-form-item>
           <el-button type="primary" @click="onSubmit">查询</el-button>
-          <el-button type="primary" @click="onReset('ruleFormRef')"
-            >重置</el-button
-          >
+          <el-button type="primary" @click="onReset('ruleFormRef')">重置</el-button>
         </el-form-item>
       </el-form>
     </el-card>
@@ -58,43 +52,18 @@
         <el-table-column label="商铺介绍" prop="description"></el-table-column>
         <el-table-column label="操作" width="400">
           <template #default="scope">
-            <el-button
-              size="small"
-              @click="handleEadit(scope.$index, scope.row)"
-              >编辑商铺</el-button
-            >
-            <el-button
-              type="success"
-              size="small"
-              @click="addFood(scope.$index, scope.row)"
-              >编辑食品</el-button
-            >
-            <el-button
-              type="success"
-              size="small"
-              @click="showListOrder(scope.$index, scope.row)"
-              >查看订单</el-button
-            >
-            <el-button
-              type="danger"
-              size="small"
-              @click="handleDelete(scope.$index, scope.row)"
-              >删除商铺</el-button
-            >
+            <el-button size="small" @click="handleEadit(scope.$index, scope.row)">编辑商铺</el-button>
+            <el-button type="success" size="small" @click="addFood(scope.$index, scope.row)">编辑食品</el-button>
+            <el-button type="success" size="small" @click="showListOrder(scope.$index, scope.row)">查看订单</el-button>
+            <el-button type="danger" size="small" @click="handleDelete(scope.$index, scope.row)">删除商铺</el-button>
           </template>
         </el-table-column>
       </el-table>
 
       <!-- 分页 -->
       <div class="Pagination">
-        <el-pagination
-          :total="count"
-          :current-page="currentPage"
-          :page-size="20"
-          @current-change="handleCurrentChange"
-          @size-change="handleSizeChange"
-          layout="->, total, prev, pager, next, jumper"
-        ></el-pagination>
+        <el-pagination :total="count" :current-page="currentPage" :page-size="20" @current-change="handleCurrentChange"
+          @size-change="handleSizeChange" layout="->, total, prev, pager, next, jumper"></el-pagination>
       </div>
 
       <!-- 弹出编辑模块 -->
@@ -104,62 +73,34 @@
             <el-input v-model="selectTable.name"></el-input>
           </el-form-item>
           <el-form-item label="详细地址" label-width="100px">
-            <el-autocomplete
-              v-model="address.address"
-              placeholder="请输入地址"
-              style="width: 100%"
-              @select="addressSelect"
-              :fetch-suggestions="querySearchAsync"
-            ></el-autocomplete>
+            <el-autocomplete v-model="address.address" placeholder="请输入地址" style="width: 100%" @select="addressSelect"
+              :fetch-suggestions="querySearchAsync"></el-autocomplete>
             <span>当前城市:{{ city.name }}</span>
           </el-form-item>
           <el-form-item label="商铺介绍" label-width="100px">
-            <el-input
-              v-model="selectTable.description"
-              placeholder="你的商铺简介"
-            ></el-input>
+            <el-input v-model="selectTable.description" placeholder="你的商铺简介"></el-input>
           </el-form-item>
           <el-form-item label="联系电话" label-width="100px">
-            <el-input
-              v-model="selectTable.phone"
-              placeholder="联系电话"
-            ></el-input>
+            <el-input v-model="selectTable.phone" placeholder="联系电话"></el-input>
           </el-form-item>
           <el-form-item label="商铺分类" label-width="100px">
-            <el-cascader
-              :options="categoryOptions"
-              v-model="selectCategory"
-            ></el-cascader>
+            <el-cascader :options="categoryOptions" v-model="selectCategory"></el-cascader>
           </el-form-item>
           <el-form-item label="商铺图片" label-width="100px">
-            <el-upload
-              :action="baseUrl + '/v1/addimg/shop'"
-              class="avatar-uploader"
-              :show-file-list="true"
-              :on-success="handleShopAvatarScucess"
-              :before-upload="beforeAvatarUpload"
-              :limit="1"
-              :on-exceed="handleExceed"
-              :on-remove="handleRemove"
-              list-type="picture-card"
-              :on-preview="handlePreview"
-            >
+            <el-upload :action="baseUrl + '/v1/addimg/shop'" class="avatar-uploader" :show-file-list="true"
+              :file-list="image_path" v-model="image_path" :on-success="handleShopAvatarScucess"
+              :before-upload="beforeAvatarUpload" :limit="1" :on-exceed="handleExceed" :on-remove="handleRemove"
+              list-type="picture-card" :on-preview="handlePreview">
               <el-icon>
                 <Plus></Plus>
               </el-icon>
             </el-upload>
-            <img
-              v-if="selectTable.image_path"
-              :src="baseImgPath + selectTable.image_path"
-              class="avatar-img"
-            />
+            <img v-if="selectTable.image_path" :src="baseImgPath + selectTable.image_path" class="avatar-img" />
           </el-form-item>
         </el-form>
         <div class="dialog-footer">
           <slot name="footer">
-            <el-button type="warning" @click="dialogFormVisible = false"
-              >取消</el-button
-            >
+            <el-button type="warning" @click="dialogFormVisible = false">取消</el-button>
             <el-button type="success" @click="updeteShop">确定</el-button>
           </slot>
         </div>
@@ -210,6 +151,7 @@ export default {
       currentPage: 1,
       address: {},
       dialogVisible: false,
+      image_path: [],
     };
   },
   created() {
@@ -468,8 +410,12 @@ export default {
         } else {
           ElMessage.error(res.message);
         }
+        this.image_path = [];
+
       } catch (err) {
         console.log("更新店铺", err);
+        this.image_path = [];
+
       }
     },
   },
